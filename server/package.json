@@ -1,0 +1,19 @@
+{
+  "name": "new-music-notifier-server",
+  "version": "1.0.0",
+  "description": "The server to make the api calls to the spotify web api",
+  "main": "server.js",
+  "author": "Tarik Courdy",
+  "license": "MIT",
+  "scripts": {
+    "debug": "node --inspect=3001 --debug-brk server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mysql": "^2.13.0",
+    "request": "^2.81.0",
+    "twilio": "^3.4.0"
+  }
+}
