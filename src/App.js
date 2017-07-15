@@ -1,6 +1,62 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TextField from 'react-md/lib/TextFields';
+
+
+class LoginView extends Component {
+  constructor() {
+    super();
+    this.state = {
+      phoneNumber: '',
+      password: ''
+    };
+
+    this.handleLogin = this.handleLogin.bind(this);
+    this.updatePassword = this.updatePassword.bind(this);
+    this.updatePhoneNumber = this.updatePhoneNumber.bind(this);
+  }
+
+  handleLogin() {
+  }
+
+  updatePassword(val) {
+    this.state.set({
+      password: val
+    });
+  }
+
+  updatePhoneNumber(val) {
+    this.state.set({
+      phoneNumber: val
+    });
+  }
+
+  
+
+  render() {
+    return(
+      <div>
+        <TextField
+          id="phoneNumber"
+          label="Phone Number"
+          lineDirection="center"
+          placeholder="(123)456-7890"
+        onChange={updatePhoneNumber}
+        />
+        <TextField
+          id="password"
+          label="Enter your password"
+          type="password"
+        onChange={updatePassword}
+        />
+
+        <Button raised label="Login" onClick={handleLogin} />
+      </div>
+      
+    );
+  }
+}
 
 class App extends Component {
   render() {

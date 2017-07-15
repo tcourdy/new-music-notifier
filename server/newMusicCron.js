@@ -17,6 +17,9 @@ const connection = mysql.createConnection({
   database: 'spotify_db'
 });
 
+getAccessToken();
+getNewMusicReleases();
+
 // get access token to make api requests
 function getAccessToken() {
   var base64 = new Buffer(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64');
@@ -65,26 +68,28 @@ function processNewMusic(newAlbums) {
 
     var spotifyURL = newRelease.external_urls.spotify;
     for(artistID of artistIdMap.keys) {
-      var userIDs = getUsersFollowingArtist(artistID);
+      var userIDs = getUsersFollowingArtist(artistID, function(users) {
+        return users;
+      });
       sendNotificationToUsers(userIds, spotifyURL, artistIdMap.get(artistID));
     }
   });
 }
 
-function sendNotificationToUsers(userIds, spotifyURL) {
+function sendNotificationToUsers(userIds, spotifyURL, artistName) {
   connection.connect();
   var sql = "select phoneNumber from users where userID in ( " +
             connection.escape(userIds) + ")";
 
   connection.query(sql, function(error, results, fields) {
     results.forEach(function(val) {
-      serverUtils.sendNewMusicNotification(val.phoneNumber, spotifyURL);
+      serverUtils.sendNewMusicNotification(val.phoneNumber, spotifyURL, artistName);
     });
   });
 }
 
 // returns an array of userIDs that are interested in the provided artistIDs
-function getUsersFollowingArtist(artistID) {
+function getUsersFollowingArtist(artistID, callback) {
   connection.connect();
   var sql = "Select userID from followedArtists where spotifyArtistID in ( "
           + connection.escape(artistID) + ')';
@@ -94,9 +99,7 @@ function getUsersFollowingArtist(artistID) {
     results.forEach(function(val) {
       userArray.push(val.userID);
     });
-    
+    callback(userArray);
   });
   connection.end();
-  
-  return userArray;
 } 

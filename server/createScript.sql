@@ -1,6 +1,6 @@
 use spotify_db;
 
-create table if not exists phoneVerification(
+create table if not exists phone_verification(
        phoneNumber int unsigned not null,
        pin int unsigned not null
 ) engine=innodb;
@@ -11,14 +11,9 @@ create table if not exists users (
        password char(64) not null -- use sha256 hashing for password
 ) engine=innodb;
 
--- create table if not exists artists (
---        spotifyArtistID varchar(255) primary key,
---        spotifyArtistName varchar(255) not null
--- ) engine=innodb;
-
-create table if not exists followedArtists(
+create table if not exists followed_artists(
        id int unsigned auto_increment primary key,
-       spotifyArtistID varchar(255) not null,
+       spotifyArtistID varchar(256) not null,
        userID int unsigned,
 
        foreign key(userID)
