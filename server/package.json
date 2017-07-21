@@ -6,7 +6,7 @@
   "author": "Tarik Courdy",
   "license": "MIT",
   "scripts": {
-    "debug": "node --inspect=3001 --debug-brk server.js",
+    "debug": "node --inspect server.js",
     "start": "node server.js"
   },
   "dependencies": {

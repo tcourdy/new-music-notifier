@@ -1,19 +1,26 @@
 {
-  "name": "new-music-notifier",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-md": "^1.0.16"
-  },
-  "devDependencies": {
-    "react-scripts": "1.0.10"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "name": "new-music-notifier",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "concurrently": "^3.5.0",
+        "node-sass-chokidar": "^0.0.3",
+        "react": "^15.6.1",
+        "react-dom": "^15.6.1",
+        "react-md": "^1.0.16"
+    },
+    "devDependencies": {
+        "react-scripts": "1.0.10"
+    },
+    "scripts": {
+        "dev": "concurrently \"yarn run start\" \"yarn run watch-css\"",
+        "start": "react-scripts start",
+        "build-css": "node-sass-chokidar src/ -o src/",
+        "watch-css": "yarn run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject"
+    },
+
+    "proxy": "http://localhost:3001"
 }
