@@ -32,9 +32,9 @@ class App extends Component {
   
   render() {
     var visibleView;
-    if(!this.isUserAuthed && this.state.isLoginView) {
+    if(!this.state.isUserAuthed && this.state.isLoginView) {
       visibleView = <LoginView onLoggedIn={this.showHomeView}/>;
-    } else if(!this.isUserAuthed) {
+    } else if(!this.state.isUserAuthed) {
       visibleView = <RegisterView onRegistered={this.showHomeView}/>;
     } else {
       visibleView = <HomeView />; //TODO: create home view
@@ -47,11 +47,12 @@ class App extends Component {
           <h2>Welcome to New Music Notifier</h2>
         </div>
         {visibleView}
-        <Button flat
-                class={this.isUserAuthed ? 'hidden' : ''}
-                label={this.state.isLoginView ? "Register" : "Login"}
-                onClick={this.changeView}
-        />
+        <div className={this.state.isUserAuthed ? 'hide' : ''}>
+          <Button flat
+                  label={this.state.isLoginView ? "Register" : "Login"}
+                  onClick={this.changeView}
+          />
+        </div>
       </div>
     );
   }

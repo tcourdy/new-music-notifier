@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import PhoneNumberInput from './components/PhoneNumberInput';
-import PasswordInput from './components/PasswordInput';
-import Utils from './utils/Utils';
+import PhoneNumberInput from '../components/PhoneNumberInput';
+import PasswordInput from '../components/PasswordInput';
+import {generateFetchInit} from '../utils/Utils';
+import Button from 'react-md/lib/Buttons/Button';
+import '../App.scss';
 
 export default class LoginView extends Component {
   constructor() {
@@ -22,14 +24,15 @@ export default class LoginView extends Component {
       userPhone: this.state.phoneNumber.replace(/\D+/g, ''),
       password: this.state.password
     });
-    var init = Utils.generateFetchInit('POST', body);
+    var self = this;
+    var init = generateFetchInit('POST', body);
     fetch('/login', init)
       .then(function(response) {
         return response.json();
       })
       .then(function(data) {
         if(data.result && data.result === 'Success') {
-          this.props.onLoggedIn();
+          self.props.onLoggedIn();
         }
       })
   }

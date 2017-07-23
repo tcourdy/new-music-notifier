@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import TextField from 'react-md/lib/TextFields';
+import Button from 'react-md/lib/Buttons/Button';
 
 export default class CreateNewPassword extends Component {
   constructor() {
+    super();
     this.state = {
       password: '',
       doPasswordsMatch: false
@@ -24,6 +26,10 @@ export default class CreateNewPassword extends Component {
       this.setState({
         doPasswordsMatch: true
       });
+    } else {
+      this.setState({
+        doPasswordsMatch: false
+      });
     }
   }
 
@@ -34,26 +40,28 @@ export default class CreateNewPassword extends Component {
   
   render() {
     return(
-      <TextField
-        label="Password"
-        lineDirection="center"
-        placeholder="Enter your password"
-        type="password"
-        onChange={this.updatePassword}
-      />
+      <div>
+        <TextField
+          label="Password"
+          lineDirection="center"
+          placeholder="Enter your password"
+          type="password"
+          onChange={this.updatePassword}
+        />
 
-      <TextField
-        label="Enter Password Again"
-        lineDirection="center"
-        placeholder="Enter your password again"
-        type="password"
-        onChange={this.verifyPassword}
-      />
+        <TextField
+          label="Enter Password Again"
+          lineDirection="center"
+          placeholder="Enter your password again"
+          type="password"
+          onChange={this.verifyPassword}
+        />
 
-      <Button flat label="Create Password"
-              disabled={!this.state.doPasswordsMatch}
-              onClick={this.sendPassword}
-      />
+        <Button flat label="Create Password"
+                disabled={!this.state.doPasswordsMatch}
+                onClick={this.sendPassword}
+        />
+      </div>
     );
   }
 }
