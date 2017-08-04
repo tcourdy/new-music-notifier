@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TextField from 'react-md/lib/TextFields';
 
 export default class PasswordInput extends Component {
-  render() {
+  render(props) {
     return(
       <TextField
         label="Password"

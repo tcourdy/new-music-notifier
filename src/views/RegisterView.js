@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PhoneNumberInput from '../components/PhoneNumberInput';
 import PinInput from '../components/PinInput';
-import {generateFetchInit} from '../utils/Utils';
+import {generateFetchInitPost} from '../utils/Utils';
 import Button from 'react-md/lib/Buttons/Button';
 import CreateNewPassword from '../components/CreateNewPassword';
 import '../App.css';
 
 
 export default class RegisterView extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       phoneNumber: '',
       enableRegister: false,
@@ -44,7 +44,7 @@ export default class RegisterView extends Component {
     var body = JSON.stringify({
       phoneNumber: phoneNumber
     });
-    var init = generateFetchInit('POST', body);
+    var init = generateFetchInitPost(body);
     var self = this;
     ///sendTwilioPin
     fetch('/sendTwilioPin', init)
@@ -72,7 +72,7 @@ export default class RegisterView extends Component {
       phoneNumber: this.state.phoneNumber,
       password: password
     });
-    var init = generateFetchInit('POST', body);
+    var init = generateFetchInitPost(body);
     var self = this;
     fetch('/createNewUser', init)
       .then(function(response) {
@@ -90,7 +90,7 @@ export default class RegisterView extends Component {
       pin: this.state.pin,
       phoneNumber: this.state.phoneNumber
     });
-    var init = generateFetchInit('POST', body);
+    var init = generateFetchInitPost(body);
     var self = this;
 
     //verifyTwilioPin

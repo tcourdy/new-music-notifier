@@ -3,8 +3,8 @@ import TextField from 'react-md/lib/TextFields';
 import Button from 'react-md/lib/Buttons/Button';
 
 export default class CreateNewPassword extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       password: '',
       doPasswordsMatch: false

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PhoneNumberInput from '../components/PhoneNumberInput';
 import PasswordInput from '../components/PasswordInput';
-import {generateFetchInit} from '../utils/Utils';
+import {generateFetchInitPost} from '../utils/Utils';
 import Button from 'react-md/lib/Buttons/Button';
 import '../App.scss';
 
 export default class LoginView extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       phoneNumber: '',
       password: '',
@@ -19,13 +19,14 @@ export default class LoginView extends Component {
     this.updatePhoneNumber = this.updatePhoneNumber.bind(this);
   }
 
+  //TODO use authorization headers to login
   login() {
     var body = JSON.stringify({
       userPhone: this.state.phoneNumber.replace(/\D+/g, ''),
       password: this.state.password
     });
     var self = this;
-    var init = generateFetchInit('POST', body);
+    var init = generateFetchInitPost(body);
     fetch('/login', init)
       .then(function(response) {
         return response.json();
