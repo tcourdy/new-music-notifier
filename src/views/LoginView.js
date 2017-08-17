@@ -35,7 +35,7 @@ export default class LoginView extends Component {
         if(data.result && data.result === 'Success') {
           self.props.onLoggedIn();
         }
-      })
+      });
   }
 
   updatePassword(val) {

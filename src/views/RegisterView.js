@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PhoneNumberInput from '../components/PhoneNumberInput';
 import PinInput from '../components/PinInput';
-import {generateFetchInitPost} from '../utils/Utils';
+import { generateFetchInitPost } from '../utils/Utils';
 import Button from 'react-md/lib/Buttons/Button';
 import CreateNewPassword from '../components/CreateNewPassword';
 import '../App.css';
