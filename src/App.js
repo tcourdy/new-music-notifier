@@ -5,6 +5,7 @@ import Button from 'react-md/lib/Buttons/Button';
 import LoginView from './views/LoginView';
 import RegisterView from './views/RegisterView';
 import HomeView from './views/HomeView';
+import { generateFetchInitPost } from './utils/Utils';
 
 class App extends Component {
     constructor() {
@@ -15,6 +16,7 @@ class App extends Component {
         };
         this.changeView = this.changeView.bind(this);
         this.showHomeView = this.showHomeView.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     changeView() {
@@ -29,6 +31,19 @@ class App extends Component {
             isUserAuthed: true
         });
     }
+
+    logout() {
+        var init = generateFetchInitPost(null);
+        fetch('/logout', init)
+            .then((response) => {
+                if(response.ok) {
+                    this.setState({
+                        isLoginView: true,
+                        isUserAuthed: false
+                    });
+                }
+            });
+    }
     
     render() {
         var visibleView;
@@ -42,17 +57,22 @@ class App extends Component {
 
         return (
             <div className="App">
-            <div className="App-header">
-            <img src={Spotify_Logo_RGB} className="App-logo" alt="logo" />
-            <h2>New Music Notifier</h2>
-            </div>
-            {visibleView}
-            <div className={this.state.isUserAuthed ? 'hide' : ''}>
-            <Button flat
-            label={this.state.isLoginView ? "Register" : "Login"}
-            onClick={this.changeView}
-            />
-            </div>
+                <div>
+                    <Button flat label="Logout"
+                            className={this.state.isUserAuthed ? '' : 'hide'}
+                            onClick={this.logout} />
+                </div>
+                <div className="App-header">
+                    <img src={Spotify_Logo_RGB} className="App-logo" alt="logo" />
+                    <h2>New Music Notifier</h2>
+                </div>
+                {visibleView}
+                <div className={this.state.isUserAuthed ? 'hide' : ''}>
+                    <Button flat
+                            label={this.state.isLoginView ? "Register" : "Login"}
+                            onClick={this.changeView}
+                    />
+                </div>
             </div>
         );
     }
