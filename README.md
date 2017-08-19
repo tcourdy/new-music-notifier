@@ -8,7 +8,8 @@ Feel free to learn from or add to this project.
 
 In order to get the server to successfully run you will need to create a `creds.json` file with the following syntax:
 
-```{
+```
+{
   "spotify_client_id": "",
   "spotify_client_secret": "",
   "twilio_account_sid": "",
@@ -16,7 +17,8 @@ In order to get the server to successfully run you will need to create a `creds.
   "twilio_number": "",
   "mysql_user": "",
   "mysql_pass": ""
-}```
+}
+```
 
 
 To start the server from the main repository folder:
