@@ -1,5 +1,6 @@
 const request = require('request');
 const serverUtils= require('./serverUtils');
+const fs = require('fs');
 
 //SPOTIFY credentials
 const SPOTIFY_BASE = 'https://api.spotify.com';
