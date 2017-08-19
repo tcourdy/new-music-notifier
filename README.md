@@ -22,10 +22,14 @@ In order to get the server to successfully run you will need to create a `creds.
 
 
 To start the server from the main repository folder:
-`> cd server`
-`> yarn install`
-`> yarn start`
+```
+> cd server
+> yarn install
+> yarn start
+```
 
 To start react from the main repository folder:
-`> yarn install`
-`> yarn start`
+```
+> yarn install
+> yarn start
+```
